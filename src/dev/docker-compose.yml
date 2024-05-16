@@ -1,0 +1,20 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:latest
+    hostname: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+  challenge:
+    container_name: my-challenge
+    depends_on:
+      - mongo
+    build: ..
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"
